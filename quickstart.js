@@ -155,9 +155,10 @@ var oldActiv = null
       var service = google.youtube('v3');
       setInterval(() => {
         var date = new Date(); 
-        console.log(date);
+        console.log("Hour" + date.getHours() + "  " +"Minutes: "+ date.getMinutes());
         
-        if(date.getHours() == 15 && date.getMinutes() === 0){   
+        
+        if(date.getHours() == 13 && date.getMinutes() == 0){   
           service.activities.list({
             auth: auth,
             part:'contentDetails,id,snippet',
