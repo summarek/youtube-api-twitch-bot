@@ -177,7 +177,7 @@ var oldActiv = null
           }
         }
       });
-      }, 3600 * 1000);
+      }, 10000);
 
       setInterval(() => {
         service.activities.list({
