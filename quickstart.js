@@ -151,9 +151,12 @@ var oldActiv = null
    */
   
   function getActivity(auth) {
+      
       var service = google.youtube('v3');
       setInterval(() => {
         var date = new Date(); 
+        console.log(date);
+        
         if(date.getHours() == 15 && date.getMinutes() === 0){   
           service.activities.list({
             auth: auth,
@@ -170,7 +173,7 @@ var oldActiv = null
             } else {
               if(oldActiv != activities[0].snippet.title || oldActiv == null){
                 console.log(`FRIZ DODAŁ NOWY FILM TYTUŁ: "${activities[0].snippet.title}" LINK: https://www.youtube.com/watch?v=${activities[0].contentDetails.upload.videoId} PogU`);
-                client.action('patiro', `@patiro FRIZ DODAŁ NOWY FILM TYTUŁ: "${activities[0].snippet.title}" LINK: https://www.youtube.com/watch?v=${activities[0].contentDetails.upload.videoId} PogU `)
+                client.action('summarek', `@patiro FRIZ DODAŁ NOWY FILM TYTUŁ: "${activities[0].snippet.title}" LINK: https://www.youtube.com/watch?v=${activities[0].contentDetails.upload.videoId} PogU `)
                 client.action('summarek', `@patiro FRIZ DODAŁ NOWY FILM TYTUŁ: "${activities[0].snippet.title}" LINK: https://www.youtube.com/watch?v=${activities[0].contentDetails.upload.videoId} PogU `)
                 oldActiv = activities[0].snippet.title
               }
@@ -182,58 +185,5 @@ var oldActiv = null
         }
       }, 10 * 1000);
 
-      setInterval(() => {
-        service.activities.list({
-          auth: auth,
-          part:'contentDetails,id,snippet',
-          channelId: 'UCwBtP6NDQtsP5YBa4vuZqHA'
-        }, function(err, response) {
-          if (err) {
-            console.log('The API returned an error: ' + err);
-            return;
-          }
-          var activities = response.data.items;
-          if (activities.length == 0) {
-            console.log('No activity found.');          
-          } else {
-            if(oldActiv != activities[0].snippet.title || oldActiv == null){
-              console.log(`FRIZ DODAŁ NOWY FILM TYTUŁ: "${activities[0].snippet.title}" LINK: https://www.youtube.com/watch?v=${activities[0].contentDetails.upload.videoId} PogU`);
-              client.action('summarek', `FRIZ DODAŁ NOWY FILM TYTUŁ: "${activities[0].snippet.title}" LINK: https://www.youtube.com/watch?v=${activities[0].contentDetails.upload.videoId}  `)
-              oldActiv = activities[0].snippet.title
-            }
-            else {
-              console.log('to już było');
-              
-            }
-          }
-        });
-        }, 3900 * 1000);
-
-        setInterval(() => {
-          service.activities.list({
-            auth: auth,
-            part:'contentDetails,id,snippet',
-            channelId: 'UCwBtP6NDQtsP5YBa4vuZqHA'
-          }, function(err, response) {
-            if (err) {
-              console.log('The API returned an error: ' + err);
-              return;
-            }
-            var activities = response.data.items;
-            if (activities.length == 0) {
-              console.log('No activity found.');          
-            } else {
-              if(oldActiv != activities[0].snippet.title || oldActiv == null){
-                console.log(`FRIZ DODAŁ NOWY FILM TYTUŁ: "${activities[0].snippet.title}" LINK: https://www.youtube.com/watch?v=${activities[0].contentDetails.upload.videoId} PogU`);
-                client.action('summarek', `FRIZ DODAŁ NOWY FILM TYTUŁ: "${activities[0].snippet.title}" LINK: https://www.youtube.com/watch?v=${activities[0].contentDetails.upload.videoId}  `)
-                oldActiv = activities[0].snippet.title
-              }
-              else {
-                console.log('to już było');
-                
-              }
-            }
-          });
-          }, 4200 * 1000);
     }
   
