@@ -9,6 +9,8 @@ client.on('connected', onConnectedHandler);
 client.connect();
 function onConnectedHandler (addr, port) {
   console.log(`* Connected to ${addr}:${port}`);
+  console.log('siema');
+  
 }
 
 // If modifying these scopes, delete your previously saved credentials
