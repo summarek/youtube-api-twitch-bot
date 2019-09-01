@@ -139,11 +139,7 @@ function getChannel(auth) {
     }
   });
 }
-
-
 var oldActiv = null
-
-  
   /**
    * Lists the names and IDs of up to 10 files.
    *
@@ -155,10 +151,8 @@ var oldActiv = null
       var service = google.youtube('v3');
       setInterval(() => {
         var date = new Date(); 
-        console.log("Hour" + date.getHours() + "  " +"Minutes: "+ date.getMinutes());
-        
-        
-        if(date.getHours() == 13 && date.getMinutes() == 0){   
+        console.log("Hour" + date.getHours() + "  " +"Minutes: "+ date.getMinutes());    
+        if(date.getHours() == 15 && date.getMinutes() == 30){   
           service.activities.list({
             auth: auth,
             part:'contentDetails,id,snippet',
@@ -174,7 +168,7 @@ var oldActiv = null
             } else {
               if(oldActiv != activities[0].snippet.title || oldActiv == null){
                 console.log(`FRIZ DODAŁ NOWY FILM TYTUŁ: "${activities[0].snippet.title}" LINK: https://www.youtube.com/watch?v=${activities[0].contentDetails.upload.videoId} PogU`);
-                client.action('summarek', `@patiro FRIZ DODAŁ NOWY FILM TYTUŁ: "${activities[0].snippet.title}" LINK: https://www.youtube.com/watch?v=${activities[0].contentDetails.upload.videoId} PogU `)
+                client.action('patiro', `@patiro FRIZ DODAŁ NOWY FILM TYTUŁ: "${activities[0].snippet.title}" LINK: https://www.youtube.com/watch?v=${activities[0].contentDetails.upload.videoId} PogU `)
                 client.action('summarek', `@patiro FRIZ DODAŁ NOWY FILM TYTUŁ: "${activities[0].snippet.title}" LINK: https://www.youtube.com/watch?v=${activities[0].contentDetails.upload.videoId} PogU `)
                 oldActiv = activities[0].snippet.title
               }
