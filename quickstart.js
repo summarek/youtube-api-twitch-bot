@@ -152,7 +152,7 @@ var oldActiv = null
       setInterval(() => {
         var date = new Date(); 
         console.log("Hour" + date.getHours() + "  " +"Minutes: "+ date.getMinutes());    
-        if(date.getHours() == 15 && date.getMinutes() == 30){   
+        if(date.getHours() == 15 && date.getMinutes() == 0){   
           service.activities.list({
             auth: auth,
             part:'contentDetails,id,snippet',
